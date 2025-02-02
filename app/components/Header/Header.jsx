@@ -18,7 +18,7 @@ const Header = () => {
         }
       });
   
-      return () => unsubscribe(); // Отписка при размонтировании
+      return () => unsubscribe();
     }, [auth, router]);
 
     return <div>{user ? "Hi, " + user.email : "Loading..."}</div>;

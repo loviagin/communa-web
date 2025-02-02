@@ -65,7 +65,7 @@ const Signup = () => {
 
             await createUserInFirestore(user);
 
-            console.log("User created:", user.uid);
+            console.log("User created");
             router.push("/feed");
 
         } catch (error) {
@@ -83,7 +83,7 @@ const Signup = () => {
                 name: name.trim(),
                 nickname: nickname.trim(),
                 bio: "",
-                avatarUrl: "",
+                avatarUrl: "avatar1",
                 birthday: Timestamp.fromDate(new Date()), 
                 email: user.email,
                 online: true,
@@ -107,9 +107,8 @@ const Signup = () => {
                 tags: ["user"],
             });
 
-            console.log("User added to Firestore:", user.uid);
         } catch (error) {
-            console.error("Error adding user to Firestore:", error);
+            console.error("Error adding user to db:", error);
             throw new Error("Failed to save user data");
         }
     }

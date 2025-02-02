@@ -14,7 +14,7 @@ const LoginItem = () => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                console.log("User logged in:", user.uid);
+                console.log("User logged in");
                 setUserLoggedIn(true);
                 router.push("/feed");
             } else {
