@@ -1,6 +1,6 @@
 //app/components/LoginItem.jsx
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import firebase from "../../firebase/firebase"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -11,17 +11,19 @@ const LoginItem = () => {
     const auth = getAuth(firebase);
     const [userLoggedIn, setUserLoggedIn] = useState(false)
 
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            const uid = user.uid;
-            console.log(uid)
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log("User logged in:", user.uid);
+                setUserLoggedIn(true);
+                router.push("/feed");
+            } else {
+                setUserLoggedIn(false);
+            }
+        });
 
-            setUserLoggedIn(true)
-            router.push("/feed")
-        } else {
-            setUserLoggedIn(false)
-        }
-    });
+        return () => unsubscribe(); // Отписываемся при размонтировании компонента
+    }, [auth, router]);
 
     return (
         <div>

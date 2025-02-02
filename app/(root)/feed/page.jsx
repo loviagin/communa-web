@@ -1,4 +1,4 @@
-import SignOutButton from "../components/SignOutButton/SignOutButton"
+import SignOutButton from "@/app/components/SignOutButton/SignOutButton"
 
 const Feed = () => {
   return (
