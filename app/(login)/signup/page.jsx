@@ -103,7 +103,7 @@ const Signup = () => {
                     showProfile: true,
                 },
                 interests: [],
-                lastData: ["web", Timestamp.fromDate(new Date()), "1.0.0"], 
+                lastData: ["web", new Date().toISOString, "1.0.0"], 
                 tags: ["user"],
             });
 
