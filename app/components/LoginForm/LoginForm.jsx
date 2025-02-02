@@ -5,7 +5,9 @@ import { useState } from "react";
 import styles from "./LoginForm.module.css?inline";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { firebase } from "@/app/firebase/firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import Link from "next/link";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +15,7 @@ const LoginForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const auth = getAuth(); // Firebase Auth
+  const auth = getAuth(firebase); // Firebase Auth
 
   const handleLogin = async (e) => {
     e.preventDefault(); // Останавливаем стандартное поведение формы
@@ -74,14 +76,24 @@ const LoginForm = () => {
 
         {errorMessage && <div className={styles.error}>{errorMessage}</div>}
 
+        <div className={styles.linkContainer}>
+          <p>Don't have an Account?</p>
+          <Link href="/signup" className={styles.link}> Register now</Link>
+        </div>
+
         <button className={styles.buttonClass} type="submit" disabled={isLoading}>
           {isLoading ? "Logging in..." : "Log In"}
         </button>
 
-        <div className={styles.social}>
+        <div className={styles.linkContainer}>
+          <p>Forgot password?</p>
+          <Link href="/recoverpassword" className={styles.link}> Recover password</Link>
+        </div>
+
+        {/* <div className={styles.social}>
           <div className={styles.go}><i className="fab fa-google"></i> Google</div>
           <div className={styles.fb}><i className="fa-solid fa-phone"></i> Phone</div>
-        </div>
+        </div> */}
       </form>
     </div>
   );

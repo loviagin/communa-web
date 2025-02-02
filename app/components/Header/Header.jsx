@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from "react";
-import firebase from "../../firebase/firebase"
+import { firebase } from "../../firebase/firebase"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
@@ -21,7 +21,7 @@ const Header = () => {
       return () => unsubscribe(); // Отписка при размонтировании
     }, [auth, router]);
 
-    return <div>{user ? user.email : "Loading..."}</div>;
+    return <div>{user ? "Hi, " + user.email : "Loading..."}</div>;
 }
 
 export default Header

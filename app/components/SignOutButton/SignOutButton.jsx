@@ -1,5 +1,5 @@
 "use client"
-import firebase from "@/app/firebase/firebase"
+import { firebase } from "@/app/firebase/firebase"
 import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
